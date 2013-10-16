@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <title>SMS Sender</title>
+
+  <style type="text/css" media="screen,print">@import url("docs.css");</style>
+<META http-equiv=Content-Type content="text/html; charset=utf-8"></head>
+
+<body>
+<div><a name="top"></a></div>
+
+<div id="header">
+<table cellpadding="0" cellspacing="0" border="0" style="width:100%;"><tr>
+<td class="docheading" style="width:300px;"><h1 style="font-size: 18px; font-weight: bold;">intoEEtive.com</h1></td>
+<td class="searchbox">
+
+</td>
+</tr>
+</table>
+</div>
+
+
+<div id="navlinks">
+<a href="http://www.intoeetive.com/">intoEEtive.com</a> &gt;
+<a href="http://www.intoeetive.com/index.php/category/extending_ee">EE add-ons</a> &gt;
+<a href="http://www.intoeetive.com/index.php/comments/sms-sender">SMS Sender</a>
+</div>
+
+
+<div id="content">
+
+	<h1>SMS Sender</h1>
+
+	<p>This module enables sending SMS from ExpressionEngine frontend pages.</p>
+    
+    <p>To send SMS, you will need to use third-party SMS gateway service. Currently following are supported: <a href="http://www.twilio.com/">Twilio</a>.</p>
+
+
+	
+	<h2>Sending the message</h2>
+
+	<p><strong>{exp:sms_sender:form}</strong></p>
+
+<code>
+{exp:sms_sender:form}<br />
+&lt;p&gt;Message:<br />
+&lt;textarea name="message"&gt;&lt;/textarea&gt;<br />
+&lt;/p&gt;<br />
+&lt;p&gt;Recipients:<br />
+&lt;textarea name="recipients"&gt;&lt;/textarea&gt;<br />
+&lt;/p&gt;<br />
+&lt;p&gt;&lt;input type="submit" value="Send SMS" /&gt;&lt;/p&gt;<br />
+{/exp:sms_sender:form}
+</code> 
+
+<p><strong>Tag parameters:</strong>
+<ul>
+<li><dfn>return</dfn> &mdash; a page to return to after submitting the form. Can be a full URL or URI segments.<br />Use <em>return="SAME_PAGE"</em> to return user to the page used to display this form.</li>
+<li><dfn>skip_success_message="yes"</dfn> &mdash; force redirect to return page without showing success message.</li>
+<li><dfn>ajax="yes"</dfn> &mdash; turn on AJAX mode. The success or error messages shown upon submission will be shown as simple text, without using message templates. The "return" parameter will not be functional if you supply this parameter.</li>
+<li><dfn>id</dfn> &mdash; form ID (defaults to 'sms_sender_form')</li>
+<li><dfn>class</dfn> &mdash; form class (defaults to 'sms_sender_form')</li>
+<li><dfn>name</dfn> &mdash; form name (defaults to 'sms_sender_form')</li>
+</ul>
+</p>
+
+<p><strong>Form fields</strong>:
+<ul>
+<li><dfn>message</dfn> &mdash; SMS message text</li>
+<li><dfn>recipients</dfn> &mdash; list of recipients phones (in internation format). Put each number on new line, or separate with comma</li>
+</ul>
+</p>
+
+
+
+
+
+
+</div>
+
+<p class="center"><a href="#top">Top of page</a></p>
+
+<!-- {user_guide_comments} -->
+
+<div id="footer">
+  <address>Copyright &copy; 2013 Yuri Salimovskiy <a href="http://www.intoeetive.com/">intoEEtive.com</a></address>
+</div>
+
+</body>
+</html>
