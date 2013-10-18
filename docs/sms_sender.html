@@ -75,6 +75,52 @@
 </p>
 
 
+	<h2>Log of sent messages</h2>
+
+<code>
+&lt;table&gt;<br />
+&lt;tr&gt;<br />
+&lt;th&gt;Message&lt;/th&gt;<br />
+&lt;th&gt;Recipient&lt;/th&gt;<br />
+&lt;th&gt;Date sent&lt;/th&gt;<br />
+&lt;th&gt;Status&lt;/th&gt;<br />
+&lt;/tr&gt;<br />
+{exp:sms_sender:log sender_id="CURRENT_USER"}<br />
+&lt;tr&gt;<br />
+&lt;td&gt;{message_text}&lt;/td&gt;<br />
+&lt;td&gt;{recipient}&lt;/td&gt;<br />
+&lt;td&gt;{sending_date format="%Y-%m-%d %H:%i:%s"}&lt;/td&gt;<br />
+&lt;td&gt;{status}&lt;/td&gt;<br />
+&lt;/tr&gt;<br />
+{/exp:sms_sender:log}<br />
+&lt;/table&gt;<br />
+</code>
+
+<p><strong>{exp:sms_sender:log}</strong> tag will display log of all messages sent by module.</p>
+
+<p><strong>Tag parameters (all optional):</strong>
+<ul>
+<li><dfn>sender_id</dfn> &mdash; member ID of sender. Use CURRENT_USER to display log of messages sent by logged in member</li>
+<li><dfn>recipient</dfn> &mdash; recipient phone number (to display only messages sent to certain phone)</li>
+<li><dfn>date_from</dfn> &mdash; display messages sent after certain date</li>
+<li><dfn>date_to</dfn> &mdash; display messages sent before certain date</li>
+</ul>
+</p>
+
+
+
+<p><strong>Single variables:</strong>
+<ul>
+<li><dfn>member_id</dfn> &mdash; sender member id</li>
+<li><dfn>username</dfn> &mdash; sender username</li>
+<li><dfn>screen_name</dfn> &mdash; sender screen_name</li>
+<li><dfn>message_text</dfn> &mdash; SMS message text</li>
+<li><dfn>recipient</dfn> &mdash; recipient phone number</li>
+<li><dfn>sending_date format="%Y-%m-%d"</dfn> &mdash; the date when SMS was sent</li>
+<li><dfn>status</dfn> &mdash; message status (can be "ok" or "error")</li>
+</ul>
+</p>
+
 
 
 

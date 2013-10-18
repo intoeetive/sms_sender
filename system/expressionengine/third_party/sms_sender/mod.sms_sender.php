@@ -235,6 +235,70 @@ class Sms_sender {
 		$this->EE->output->show_message($data);
 		
     }
+    
+    
+    
+    function log()
+    {
+		$query = $this->EE->db->select('settings')->from('modules')->where('module_name', 'Sms_sender')->limit(1)->get();
+        $settings = unserialize($query->row('settings')); 
+        
+        if ($this->EE->session->userdata('group_id')!=1 && !in_array($this->EE->session->userdata('group_id'), $settings['groups_can_send']))
+        {
+            return $this->EE->TMPL->no_results();
+        }
+        
+        $this->EE->db->select('members.member_id, members.username, members.screen_name, message_text, recipient, sending_date, status')
+            ->from('sms_sender_messages')
+            ->join('members', 'members.member_id=sms_sender_messages.sender_member_id', 'left')
+            ->join('sms_sender_recipients', 'sms_sender_messages.sms_id=sms_sender_recipients.sms_id', 'left');
+        if ($this->EE->TMPL->fetch_param('sender_id')!==false)
+        {
+            if (in_array($this->EE->TMPL->fetch_param('sender_id'), array("CURRENT_USER", "{member_id}", "{logged_in_member_id}")))
+            {
+                $this->EE->db->where('sender_member_id', $this->EE->session->userdata('member_id'));
+            }
+            else
+            {
+                $this->EE->db->where('sender_member_id', $this->EE->TMPL->fetch_param('sender_id'));
+            }
+        }
+        
+        if ($this->EE->TMPL->fetch_param('recipient')!==false)
+        {
+            $this->EE->db->like('recipient', $this->EE->TMPL->fetch_param('recipient'));
+        }
+        
+        if ($this->EE->TMPL->fetch_param('date_from')!==false)
+        {
+            $this->EE->db->where('sending_date > ', $this->EE->localize->string_to_timestamp($this->EE->TMPL->fetch_param('date_from')));
+        }
+        
+        if ($this->EE->TMPL->fetch_param('date_to')!==false)
+        {
+            $this->EE->db->where('sending_date < ', $this->EE->localize->string_to_timestamp($this->EE->TMPL->fetch_param('date_to')));
+        }
+        
+        $query = $this->EE->db->get();
+        
+        if ($query->num_rows()==0)
+        {
+            return $this->EE->TMPL->no_results();
+        }
+        
+		$variables = array();
+
+		foreach ($query->result_array() as $row)
+		{
+	        if ($row['status']=='') $row['status'] = 'error';
+            $variables[] = $row;
+		}
+		
+		$output = $this->EE->TMPL->parse_variables(trim($this->EE->TMPL->tagdata), $variables);
+		
+		return $output;
+		
+	}
 
     
 
