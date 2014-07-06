@@ -38,7 +38,14 @@ class Sms_sender_mcp {
         // Make a local reference to the ExpressionEngine super object 
         $this->EE =& get_instance(); 
         
-        $this->EE->cp->set_variable('cp_page_title', lang('sms_sender_module_name'));
+        if ($this->EE->config->item('app_version')>=260)
+        {
+        	$this->EE->view->cp_page_title = lang('sms_sender_module_name');
+        }
+        else
+        {
+        	$this->EE->cp->set_variable('cp_page_title', lang('sms_sender_module_name'));
+        }
     } 
     
     

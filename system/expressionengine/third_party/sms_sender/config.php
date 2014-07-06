@@ -3,7 +3,7 @@
 if ( ! defined('SMSSENDER_ADDON_NAME'))
 {
 	define('SMSSENDER_ADDON_NAME',         'SMS Sender');
-	define('SMSSENDER_ADDON_VERSION',      '0.1');
+	define('SMSSENDER_ADDON_VERSION',      '0.2');
 }
 
 $config['name']=SMSSENDER_ADDON_NAME;
